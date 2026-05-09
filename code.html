@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+
+<html class="light" lang="vi"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+  tailwind.config = {
+    darkMode: "class",
+    theme: {
+      extend: {
+        "colors": {
+                "surface-container-low": "#f2f3ff",
+                "surface-container-lowest": "#ffffff",
+                "surface-bright": "#faf8ff",
+                "on-primary-fixed-variant": "#003ea8",
+                "outline": "#737687",
+                "surface-container": "#ecedfa",
+                "primary": "#004cca",
+                "surface-tint": "#0053da",
+                "on-error": "#ffffff",
+                "surface-container-highest": "#e1e2ee",
+                "surface": "#faf8ff",
+                "on-background": "#191b24",
+                "on-primary-fixed": "#00174b",
+                "inverse-primary": "#b4c5ff",
+                "on-secondary": "#ffffff",
+                "on-tertiary-fixed-variant": "#832700",
+                "secondary-container": "#6cf8bb",
+                "error": "#ba1a1a",
+                "surface-container-high": "#e7e7f4",
+                "primary-container": "#0062ff",
+                "tertiary-fixed-dim": "#ffb59c",
+                "primary-fixed": "#dbe1ff",
+                "on-secondary-fixed-variant": "#005236",
+                "inverse-surface": "#2e303a",
+                "on-error-container": "#93000a",
+                "on-primary": "#ffffff",
+                "secondary-fixed": "#6ffbbe",
+                "on-secondary-fixed": "#002113",
+                "secondary-fixed-dim": "#4edea3",
+                "outline-variant": "#c2c6d9",
+                "tertiary": "#9e3100",
+                "on-surface-variant": "#424656",
+                "on-surface": "#191b24",
+                "primary-fixed-dim": "#b4c5ff",
+                "on-secondary-container": "#00714d",
+                "tertiary-container": "#c84000",
+                "error-container": "#ffdad6",
+                "background": "#faf8ff",
+                "secondary": "#006c49",
+                "on-primary-container": "#f3f3ff",
+                "surface-dim": "#d8d9e6",
+                "surface-variant": "#e1e2ee",
+                "on-tertiary": "#ffffff",
+                "tertiary-fixed": "#ffdbcf",
+                "inverse-on-surface": "#eff0fd",
+                "on-tertiary-container": "#fff1ed",
+                "on-tertiary-fixed": "#390c00"
+        },
+        "borderRadius": {
+                "DEFAULT": "0.125rem",
+                "lg": "0.25rem",
+                "xl": "0.5rem",
+                "full": "0.75rem"
+        },
+        "spacing": {
+                "container-max": "1200px",
+                "margin-mobile": "20px",
+                "unit": "8px",
+                "gutter": "24px",
+                "margin-desktop": "64px"
+        },
+        "fontFamily": {
+                "label-caps": [
+                        "Inter"
+                ],
+                "headline-xl": [
+                        "Inter"
+                ],
+                "headline-md": [
+                        "Inter"
+                ],
+                "headline-lg": [
+                        "Inter"
+                ],
+                "body-md": [
+                        "Inter"
+                ],
+                "code": [
+                        "Inter"
+                ],
+                "body-lg": [
+                        "Inter"
+                ]
+        },
+        "fontSize": {
+                "label-caps": [
+                        "12px",
+                        {
+                                "lineHeight": "1",
+                                "letterSpacing": "0.05em",
+                                "fontWeight": "600"
+                        }
+                ],
+                "headline-xl": [
+                        "48px",
+                        {
+                                "lineHeight": "1.1",
+                                "letterSpacing": "-0.02em",
+                                "fontWeight": "800"
+                        }
+                ],
+                "headline-md": [
+                        "24px",
+                        {
+                                "lineHeight": "1.3",
+                                "fontWeight": "600"
+                        }
+                ],
+                "headline-lg": [
+                        "32px",
+                        {
+                                "lineHeight": "1.2",
+                                "letterSpacing": "-0.01em",
+                                "fontWeight": "700"
+                        }
+                ],
+                "body-md": [
+                        "16px",
+                        {
+                                "lineHeight": "1.6",
+                                "fontWeight": "400"
+                        }
+                ],
+                "code": [
+                        "14px",
+                        {
+                                "lineHeight": "1.5",
+                                "fontWeight": "400"
+                        }
+                ],
+                "body-lg": [
+                        "18px",
+                        {
+                                "lineHeight": "1.6",
+                                "fontWeight": "400"
+                        }
+                ]
+        }
+},
+    },
+  }
+</script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body {
+            background-color: #faf8ff;
+        }
+        .project-card:hover img {
+            transform: scale(1.02);
+        }
+        .project-card {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+    </style>
+</head>
+<body class="font-body-md text-on-surface">
+<!-- TopAppBar -->
+<header class="fixed top-0 w-full z-50 bg-surface/80 backdrop-blur-md border-b border-outline-variant/30">
+<div class="flex justify-between items-center h-16 px-5 md:px-margin-desktop max-w-container-max mx-auto">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary" data-icon="terminal">terminal</span>
+<span class="font-headline-md text-headline-md font-bold tracking-tight text-primary">ARCHITECT.DEV</span>
+</div>
+<nav class="hidden md:flex gap-8">
+<a class="text-primary font-bold border-b-2 border-primary pb-1 font-body-md" href="#">Sản phẩm</a>
+<a class="text-on-surface-variant font-body-md hover:text-primary transition-all duration-300" href="#">Giới thiệu</a>
+<a class="text-on-surface-variant font-body-md hover:text-primary transition-all duration-300" href="#">Dịch vụ</a>
+</nav>
+<button class="bg-primary text-on-primary px-6 py-2 rounded-xl font-body-md font-medium hover:bg-primary-container transition-all">Contact</button>
+</div>
+</header>
+<main class="pt-32 pb-24 max-w-container-max mx-auto px-5 md:px-margin-desktop">
+<!-- Hero / Section Title -->
+<section class="mb-16">
+<h1 class="font-headline-xl text-headline-lg md:text-headline-xl text-on-surface mb-4">Danh mục dự án</h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-2xl">Khám phá các giải pháp công nghệ hiện đại, từ quản lý giáo dục đến trải nghiệm giải trí tương tác cao.</p>
+</section>
+<!-- Filter Chips -->
+<div class="flex flex-wrap gap-3 mb-12">
+<button class="px-6 py-2 rounded-full bg-primary text-on-primary font-body-md shadow-sm transition-colors">Tất cả</button>
+<button class="px-6 py-2 rounded-full bg-surface-container text-on-surface-variant font-body-md hover:bg-surface-container-high transition-colors">Giáo dục</button>
+<button class="px-6 py-2 rounded-full bg-surface-container text-on-surface-variant font-body-md hover:bg-surface-container-high transition-colors">Giải trí</button>
+</div>
+<!-- Project Grid -->
+<div class="grid grid-cols-1 md:grid-cols-12 gap-gutter">
+<!-- Project 1: App quản lý điểm học sinh -->
+<div class="md:col-span-7 bg-surface-container-lowest border border-outline-variant/20 rounded-xl overflow-hidden shadow-[0px_2px_8px_rgba(0,0,0,0.04)] project-card">
+<div class="aspect-video relative overflow-hidden bg-surface-container-low">
+<img class="w-full h-full object-cover transition-transform duration-500" data-alt="A clean and professional web application dashboard interface for student grade management." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAY1csaCBHQw0qQ6715yzdjBT8Gd702WWCNRvDm_L0eZE3Ydh1r25H5Q8GifUNORt9uc586RFyiXKN-ATzAfrV3_UQiqF_55WX0rnaHZXC4r2b7BtUajsxqyWuszIjXf-Z4NM5BQ6NM74PkEZZbzH19avK0DhR2dAnoTKVxinPi5e3hCG6zKVPtfuq09BYw557hlAGhmM3_2IEjNaiATLg3ray2ruc7__58JQzKIJUwQtZS0rG140edsFW_rZb5W2Aj0_TQrZa1F0g"/>
+</div>
+<div class="p-8">
+<span class="font-label-caps text-label-caps text-primary mb-2 block uppercase">Giáo dục</span>
+<h3 class="font-headline-md text-headline-md text-on-surface mb-4">App quản lý điểm học sinh</h3>
+<p class="font-body-md text-on-surface-variant mb-6 line-clamp-2">Hệ thống quản lý dữ liệu học tập thông minh, hỗ trợ giáo viên theo dõi tiến độ và kết quả học sinh một cách trực quan và chính xác.</p>
+<div class="flex flex-wrap gap-2 mb-8">
+<span class="px-3 py-1 bg-surface-container text-on-surface-variant text-xs rounded-lg font-medium">React</span>
+<span class="px-3 py-1 bg-surface-container text-on-surface-variant text-xs rounded-lg font-medium">Vercel</span>
+<span class="px-3 py-1 bg-surface-container text-on-surface-variant text-xs rounded-lg font-medium">Database</span>
+</div>
+<a class="inline-flex items-center gap-2 text-primary font-bold hover:gap-3 transition-all group" href="https://appqld.vercel.app/" target="_blank">
+                        Truy cập app
+                        <span class="material-symbols-outlined transition-transform" data-icon="arrow_forward">arrow_forward</span>
+</a>
+</div>
+</div>
+<!-- Project 2: App trò chơi -->
+<div class="md:col-span-5 bg-surface-container-lowest border border-outline-variant/20 rounded-xl overflow-hidden shadow-[0px_2px_8px_rgba(0,0,0,0.04)] project-card">
+<div class="aspect-[4/3] relative overflow-hidden bg-surface-container-low">
+<img class="w-full h-full object-cover transition-transform duration-500" data-alt="A vibrant and playful game interface displayed on a modern tablet screen." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCPBckyam7SaX-ZaSzeRDMCxsjOBZkLRdmFTA4Musv2xWMLIc-EgSx8aaZJ9BIAjEr1KbTsVZ45ZV3dLbfJ0fI9gKBdljsCa7Pellyb6I-yUKY0efWrNbtiVVS8nS3NsHi1HcRBatv6JI-U1IP7gmQ9AlePN_BwyzmmlsQZcq7X-iiDoa_EUEc9b9DXDRTTIhVpOcURPgkqWFkdhfGq4fdrEcz8fhvkkll4AUBl7oEeoba8oJ2ituI7H4xECmxV1wOjgeytr3ETJ3c"/>
+</div>
+<div class="p-8">
+<span class="font-label-caps text-label-caps text-primary mb-2 block uppercase">Giải trí</span>
+<h3 class="font-headline-md text-headline-md text-on-surface mb-4">App trò chơi</h3>
+<p class="font-body-md text-on-surface-variant mb-6">Ứng dụng trò chơi tương tác ONTAPKII mang lại trải nghiệm học tập kết hợp giải trí đầy thú vị cho người dùng.</p>
+<div class="flex flex-wrap gap-2 mb-8">
+<span class="px-3 py-1 bg-surface-container text-on-surface-variant text-xs rounded-lg font-medium">JavaScript</span>
+<span class="px-3 py-1 bg-surface-container text-on-surface-variant text-xs rounded-lg font-medium">GitHub Pages</span>
+</div>
+<a class="inline-flex items-center gap-2 text-primary font-bold hover:gap-3 transition-all group" href="https://tranghoa-bx.github.io/ONTAPKII/" target="_blank">
+                        Truy cập app
+                        <span class="material-symbols-outlined transition-transform" data-icon="arrow_forward">arrow_forward</span>
+</a>
+</div>
+</div>
+<!-- Project 3: App PHT bài 34 KHTN 7 -->
+<div class="md:col-span-12 bg-surface-container-lowest border border-outline-variant/20 rounded-xl overflow-hidden shadow-[0px_2px_8px_rgba(0,0,0,0.04)] project-card">
+<div class="flex flex-col md:flex-row">
+<div class="md:w-1/2 aspect-video md:aspect-auto overflow-hidden bg-surface-container-low">
+<img class="w-full h-full object-cover transition-transform duration-500" data-alt="A scientific laboratory-themed digital worksheet interface for Natural Sciences." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAe53Cbe60WyUuatMbGKtUjhJFI6t3R9QNOttNaPU4zQ9_h-DInbY_VSolfxtBnd0Gmk3pzkBH_C-N5Xw_ujDMefmE8komBTc2lBCu72PaC8b4-y3vW22G8zZ7ekCs16MwFYeqBjB0itlFT90-Wr0PTgqVDrEIhu7vDFUqQCzgcsnGUiy4BbVyWrcEuMjhTw0M3zIJFWchftNhN60PiDh853MITsj7g6RYRk0928e0SdEHZ_EtA3vBglq7g4MtCbxWXfkSyAGYAZQ4"/>
+</div>
+<div class="md:w-1/2 p-10 flex flex-col justify-center">
+<span class="font-label-caps text-label-caps text-primary mb-2 block uppercase">Giáo dục / Khoa học</span>
+<h3 class="font-headline-md text-headline-md text-on-surface mb-4">App PHT bài 34 KHTN 7</h3>
+<p class="font-body-md text-on-surface-variant mb-8">Phiếu học tập điện tử chuyên sâu cho bài 34 môn Khoa học tự nhiên lớp 7, giúp học sinh nắm vững kiến thức thông qua các bài tập tương tác trực tiếp.</p>
+<div class="flex flex-wrap gap-2 mb-10">
+<span class="px-3 py-1 bg-surface-container text-on-surface-variant text-xs rounded-lg font-medium">HTML/CSS</span>
+<span class="px-3 py-1 bg-surface-container text-on-surface-variant text-xs rounded-lg font-medium">Education Tech</span>
+</div>
+<div>
+<a class="inline-flex items-center px-8 py-3 bg-primary text-on-primary rounded-xl font-body-md font-bold hover:bg-primary-container transition-all shadow-md active:scale-95" href="https://tranghoa-bx.github.io/b34PHT/" target="_blank">
+                                Xem chi tiết dự án
+                            </a>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Footer -->
+<footer class="w-full py-16 mt-16 bg-surface-container-lowest border-t border-outline-variant/30">
+<div class="flex flex-col md:flex-row justify-between items-center px-5 md:px-margin-desktop max-w-container-max mx-auto gap-8">
+<div class="flex flex-col items-center md:items-start gap-2">
+<span class="font-headline-md text-headline-md font-bold text-primary">ARCHITECT.DEV</span>
+<p class="font-body-md text-on-surface-variant text-center md:text-left">© 2024 Architect Portfolio. Meticulously crafted for the digital age.</p>
+</div>
+<div class="flex gap-6">
+<a class="text-on-surface-variant font-label-caps hover:text-primary transition-colors underline decoration-primary/30" href="#">GitHub</a>
+<a class="text-on-surface-variant font-label-caps hover:text-primary transition-colors underline decoration-primary/30" href="#">LinkedIn</a>
+<a class="text-on-surface-variant font-label-caps hover:text-primary transition-colors underline decoration-primary/30" href="#">Twitter</a>
+<a class="text-on-surface-variant font-label-caps hover:text-primary transition-colors underline decoration-primary/30" href="#">Resume</a>
+</div>
+</div>
+</footer>
+</body></html>

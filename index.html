@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="vi" class="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Architect Portfolio | Professional App Hub</title>
+    <meta name="description" content="Khám phá danh mục các ứng dụng và giải pháp công nghệ hiện đại bởi Architect.">
+    
+    <!-- Fonts & Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Geist+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        'primary': '#004cca',
+                        'primary-container': '#0062ff',
+                        'on-primary': '#ffffff',
+                        'secondary': '#006c49',
+                        'secondary-container': '#6cf8bb',
+                        'surface': '#faf8ff',
+                        'surface-container': '#ecedfa',
+                        'surface-container-low': '#f2f3ff',
+                        'surface-container-lowest': '#ffffff',
+                        'on-surface': '#191b24',
+                        'on-surface-variant': '#424656',
+                        'outline-variant': '#c2c6d9',
+                    },
+                    fontFamily: {
+                        'inter': ['Inter', 'sans-serif'],
+                        'geist': ['Geist Mono', 'monospace'],
+                    },
+                    maxWidth: {
+                        'container-max': '1200px',
+                    },
+                    spacing: {
+                        'margin-desktop': '64px',
+                        'gutter': '24px',
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        
+        body {
+            background-color: #faf8ff;
+            font-family: 'Inter', sans-serif;
+        }
+        
+        .glass-header {
+            background: rgba(250, 248, 255, 0.8);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+        
+        .project-card {
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            border: 1px solid rgba(226, 232, 240, 0.8);
+        }
+        
+        .project-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 24px -8px rgba(0, 0, 0, 0.05);
+            border-color: #004cca;
+        }
+        
+        .project-card img {
+            transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .project-card:hover img {
+            transform: scale(1.05);
+        }
+
+        .label-caps {
+            font-family: 'Geist Mono', monospace;
+            font-size: 11px;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            font-weight: 600;
+        }
+
+        /* Modal Backdrop */
+        .modal-backdrop {
+            background: rgba(15, 23, 42, 0.4);
+            backdrop-filter: blur(4px);
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .animate-fade-in {
+            animation: fadeIn 0.6s ease-out forwards;
+        }
+    </style>
+</head>
+<body class="text-on-surface selection:bg-primary/10 selection:text-primary">
+
+    <!-- Header -->
+    <header class="fixed top-0 w-full z-50 glass-header border-b border-outline-variant/30">
+        <div class="flex justify-between items-center h-20 px-6 md:px-margin-desktop max-w-container-max mx-auto">
+            <div class="flex items-center gap-3">
+                <div class="w-10 h-10 bg-primary rounded-xl flex items-center justify-center text-on-primary">
+                    <span class="material-symbols-outlined text-[24px]">terminal</span>
+                </div>
+                <span class="text-xl font-extrabold tracking-tight text-primary">ARCHITECT.DEV</span>
+            </div>
+            
+            <nav class="hidden lg:flex items-center gap-10">
+                <a href="#" class="text-primary font-bold border-b-2 border-primary pb-1">Sản phẩm</a>
+                <a href="#" class="text-on-surface-variant font-medium hover:text-primary transition-colors">Dịch vụ</a>
+                <a href="#" class="text-on-surface-variant font-medium hover:text-primary transition-colors">Giới thiệu</a>
+            </nav>
+
+            <div class="flex items-center gap-4">
+                <div class="hidden md:flex flex-col items-end mr-2">
+                    <span class="text-[10px] font-bold text-red-500 uppercase tracking-widest">Lấy API key để sử dụng app</span>
+                    <button id="openSettings" class="flex items-center gap-2 text-on-surface-variant hover:text-primary transition-colors group">
+                        <span class="font-semibold text-sm">Settings</span>
+                        <span class="material-symbols-outlined text-[20px] group-hover:rotate-90 transition-transform duration-300">settings</span>
+                    </button>
+                </div>
+                <button class="bg-primary text-on-primary px-6 py-2.5 rounded-xl font-semibold hover:bg-primary-container transition-all shadow-lg shadow-primary/20 active:scale-95">Contact</button>
+            </div>
+        </div>
+    </header>
+
+    <main class="pt-36 pb-24 max-w-container-max mx-auto px-6 md:px-margin-desktop">
+        <!-- Hero Section -->
+        <section class="mb-20 animate-fade-in">
+            <h1 class="text-4xl md:text-6xl font-extrabold text-on-surface mb-6 tracking-tight leading-[1.1]">
+                Portfolio <span class="text-primary">Ứng dụng</span><br>Công nghệ Hiện đại
+            </h1>
+            <p class="text-lg md:text-xl text-on-surface-variant max-w-3xl leading-relaxed">
+                Nơi tập hợp các giải pháp đột phá từ quản lý giáo dục thông minh đến trải nghiệm giải trí tương tác. 
+                Được xây dựng với sự tinh tế và hiệu năng tối ưu.
+            </p>
+        </section>
+
+        <!-- Filter Chips -->
+        <div class="flex flex-wrap gap-3 mb-12 animate-fade-in" style="animation-delay: 0.1s;">
+            <button class="filter-btn active px-6 py-2 rounded-full bg-primary text-on-primary font-semibold shadow-md transition-all" data-category="all">Tất cả</button>
+            <button class="filter-btn px-6 py-2 rounded-full bg-surface-container text-on-surface-variant font-medium hover:bg-surface-container-high transition-all" data-category="Giáo dục">Giáo dục</button>
+            <button class="filter-btn px-6 py-2 rounded-full bg-surface-container text-on-surface-variant font-medium hover:bg-surface-container-high transition-all" data-category="Giải trí">Giải trí</button>
+            <button class="filter-btn px-6 py-2 rounded-full bg-surface-container text-on-surface-variant font-medium hover:bg-surface-container-high transition-all" data-category="Khoa học">Khoa học</button>
+        </div>
+
+        <!-- Project Grid -->
+        <div id="appGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 animate-fade-in" style="animation-delay: 0.2s;">
+            <!-- App cards will be injected here -->
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-surface-container-lowest border-t border-outline-variant/30 py-20 mt-20">
+        <div class="max-w-container-max mx-auto px-6 md:px-margin-desktop">
+            <div class="flex flex-col lg:flex-row justify-between items-start lg:items-center gap-12">
+                <div class="space-y-4">
+                    <div class="flex items-center gap-3">
+                        <div class="w-8 h-8 bg-primary rounded-lg flex items-center justify-center text-on-primary">
+                            <span class="material-symbols-outlined text-[18px]">terminal</span>
+                        </div>
+                        <span class="text-lg font-extrabold text-primary">ARCHITECT.DEV</span>
+                    </div>
+                    <p class="text-on-surface-variant max-w-sm">© 2024 Architect Portfolio. Được thiết kế tinh xảo cho kỷ nguyên số.</p>
+                </div>
+                
+                <div class="flex flex-wrap gap-10">
+                    <div class="space-y-4">
+                        <h4 class="label-caps text-on-surface">Kết nối</h4>
+                        <div class="flex flex-col gap-2">
+                            <a href="#" class="text-on-surface-variant hover:text-primary transition-colors underline decoration-primary/20">GitHub</a>
+                            <a href="#" class="text-on-surface-variant hover:text-primary transition-colors underline decoration-primary/20">LinkedIn</a>
+                        </div>
+                    </div>
+                    <div class="space-y-4">
+                        <h4 class="label-caps text-on-surface">Liên hệ</h4>
+                        <div class="flex flex-col gap-2">
+                            <a href="#" class="text-on-surface-variant hover:text-primary transition-colors">hello@architect.dev</a>
+                            <a href="#" class="text-on-surface-variant hover:text-primary transition-colors">TP. Hồ Chí Minh, VN</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Settings Modal -->
+    <div id="settingsModal" class="fixed inset-0 z-[100] hidden">
+        <div class="modal-backdrop absolute inset-0"></div>
+        <div class="absolute inset-0 flex items-center justify-center p-6">
+            <div class="bg-surface-container-lowest w-full max-w-lg rounded-2xl shadow-2xl overflow-hidden border border-outline-variant/20">
+                <div class="px-8 py-6 border-b border-outline-variant/20 flex justify-between items-center bg-surface-container-low">
+                    <h3 class="text-xl font-bold text-on-surface flex items-center gap-2">
+                        <span class="material-symbols-outlined text-primary">key</span>
+                        Cấu hình AI & API Key
+                    </h3>
+                    <button id="closeSettings" class="text-on-surface-variant hover:text-on-surface">
+                        <span class="material-symbols-outlined">close</span>
+                    </button>
+                </div>
+                
+                <div class="p-8 space-y-6">
+                    <div>
+                        <label class="block label-caps mb-3 text-on-surface">Gemini API Key</label>
+                        <div class="relative">
+                            <input type="password" id="apiKeyInput" placeholder="Dán API Key của bạn tại đây..." 
+                                class="w-full px-4 py-3 rounded-xl border-outline-variant/50 focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all">
+                            <p class="mt-2 text-xs text-on-surface-variant">
+                                Lấy API key tại <a href="https://aistudio.google.com/api-keys" target="_blank" class="text-primary font-bold underline">Google AI Studio</a>
+                            </p>
+                        </div>
+                    </div>
+
+                    <div>
+                        <label class="block label-caps mb-3 text-on-surface">Lựa chọn Model AI</label>
+                        <div class="grid grid-cols-1 gap-3">
+                            <label class="model-option flex items-center p-4 rounded-xl border border-outline-variant/50 cursor-pointer hover:bg-primary/5 transition-all">
+                                <input type="radio" name="aiModel" value="gemini-3-flash-preview" checked class="text-primary focus:ring-primary mr-4">
+                                <div>
+                                    <span class="font-bold block">Gemini 3 Flash</span>
+                                    <span class="text-xs text-on-surface-variant">Nhanh & Tối ưu (Default)</span>
+                                </div>
+                            </label>
+                            <label class="model-option flex items-center p-4 rounded-xl border border-outline-variant/50 cursor-pointer hover:bg-primary/5 transition-all">
+                                <input type="radio" name="aiModel" value="gemini-3-pro-preview" class="text-primary focus:ring-primary mr-4">
+                                <div>
+                                    <span class="font-bold block">Gemini 3 Pro</span>
+                                    <span class="text-xs text-on-surface-variant">Thông minh & Chuyên sâu</span>
+                                </div>
+                            </label>
+                            <label class="model-option flex items-center p-4 rounded-xl border border-outline-variant/50 cursor-pointer hover:bg-primary/5 transition-all">
+                                <input type="radio" name="aiModel" value="gemini-2.5-flash" class="text-primary focus:ring-primary mr-4">
+                                <div>
+                                    <span class="font-bold block">Gemini 2.5 Flash</span>
+                                    <span class="text-xs text-on-surface-variant">Ổn định & Hiệu quả</span>
+                                </div>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="px-8 py-6 bg-surface-container-low border-t border-outline-variant/20 flex justify-end gap-3">
+                    <button id="cancelSettings" class="px-6 py-2 rounded-xl font-semibold text-on-surface-variant hover:bg-surface-container transition-all">Hủy</button>
+                    <button id="saveSettings" class="px-8 py-2 rounded-xl font-semibold bg-primary text-on-primary hover:bg-primary-container transition-all shadow-lg shadow-primary/20">Lưu cấu hình</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script type="module">
+        import apps from './apps.js';
+
+        const appGrid = document.getElementById('appGrid');
+        const filterBtns = document.querySelectorAll('.filter-btn');
+        const settingsModal = document.getElementById('settingsModal');
+        const openSettings = document.getElementById('openSettings');
+        const closeSettings = document.getElementById('closeSettings');
+        const cancelSettings = document.getElementById('cancelSettings');
+        const saveSettings = document.getElementById('saveSettings');
+        const apiKeyInput = document.getElementById('apiKeyInput');
+
+        // Initial render
+        renderApps(apps);
+
+        // Render Apps Function
+        function renderApps(appsToRender) {
+            appGrid.innerHTML = appsToRender.map(app => `
+                <div class="project-card bg-surface-container-lowest rounded-2xl overflow-hidden flex flex-col group h-full">
+                    <div class="aspect-[16/10] overflow-hidden relative">
+                        <img src="${app.image}" alt="${app.title}" class="w-full h-full object-cover">
+                        <div class="absolute inset-0 bg-primary/0 group-hover:bg-primary/5 transition-colors duration-500"></div>
+                    </div>
+                    <div class="p-8 flex flex-col flex-grow">
+                        <span class="label-caps text-primary mb-3 block">${app.category}</span>
+                        <h3 class="text-xl font-bold text-on-surface mb-3 group-hover:text-primary transition-colors">${app.title}</h3>
+                        <p class="text-on-surface-variant mb-6 text-sm leading-relaxed line-clamp-3">
+                            ${app.description}
+                        </p>
+                        
+                        <div class="flex flex-wrap gap-2 mb-8 mt-auto">
+                            ${app.tags.map(tag => `
+                                <span class="px-3 py-1 bg-surface-container text-on-surface-variant text-[11px] font-bold rounded-lg uppercase tracking-wider">${tag}</span>
+                            `).join('')}
+                        </div>
+                        
+                        <a href="${app.url}" target="_blank" class="inline-flex items-center gap-2 text-primary font-bold group/link">
+                            Truy cập ứng dụng
+                            <span class="material-symbols-outlined text-[20px] transition-transform group-hover/link:translate-x-1">arrow_forward</span>
+                        </a>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // Filtering Logic
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                filterBtns.forEach(b => {
+                    b.classList.remove('bg-primary', 'text-on-primary', 'shadow-md', 'active');
+                    b.classList.add('bg-surface-container', 'text-on-surface-variant', 'font-medium');
+                });
+                btn.classList.add('bg-primary', 'text-on-primary', 'shadow-md', 'active');
+                btn.classList.remove('bg-surface-container', 'text-on-surface-variant', 'font-medium');
+
+                const category = btn.getAttribute('data-category');
+                const filteredApps = category === 'all' 
+                    ? apps 
+                    : apps.filter(app => app.category.includes(category));
+                
+                renderApps(filteredApps);
+            });
+        });
+
+        // Settings Logic
+        const loadSettings = () => {
+            const savedKey = localStorage.getItem('gemini_api_key');
+            const savedModel = localStorage.getItem('gemini_model');
+            if (savedKey) apiKeyInput.value = savedKey;
+            if (savedModel) {
+                const radio = document.querySelector(`input[name="aiModel"][value="${savedModel}"]`);
+                if (radio) radio.checked = true;
+            }
+        };
+
+        openSettings.addEventListener('click', () => {
+            loadSettings();
+            settingsModal.classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+        });
+
+        const closeModal = () => {
+            settingsModal.classList.add('hidden');
+            document.body.style.overflow = '';
+        };
+
+        closeSettings.addEventListener('click', closeModal);
+        cancelSettings.addEventListener('click', closeModal);
+        
+        saveSettings.addEventListener('click', () => {
+            const key = apiKeyInput.value.trim();
+            const model = document.querySelector('input[name="aiModel"]:checked').value;
+            
+            localStorage.setItem('gemini_api_key', key);
+            localStorage.setItem('gemini_model', model);
+            
+            alert('Cấu hình đã được lưu thành công!');
+            closeModal();
+        });
+
+        // Modal backdrop click
+        settingsModal.querySelector('.modal-backdrop').addEventListener('click', closeModal);
+    </script>
+</body>
+</html>
