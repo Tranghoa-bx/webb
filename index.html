@@ -129,6 +129,7 @@
                 <div class="hidden md:flex flex-col items-end mr-2">
                     <span class="text-[10px] font-bold text-red-500 uppercase tracking-widest">Lấy API key để sử dụng app</span>
                     <button id="openSettings" class="flex items-center gap-2 text-on-surface-variant hover:text-primary transition-colors group">
+                        <div id="apiKeyStatus" class="w-2 h-2 rounded-full bg-red-500"></div>
                         <span class="font-semibold text-sm">Settings</span>
                         <span class="material-symbols-outlined text-[20px] group-hover:rotate-90 transition-transform duration-300">settings</span>
                     </button>
@@ -275,11 +276,20 @@
         const apiKeyInput = document.getElementById('apiKeyInput');
 
         // Initial render
+        loadSettings();
         renderApps(apps);
 
         // Render Apps Function
         function renderApps(appsToRender) {
-            appGrid.innerHTML = appsToRender.map(app => `
+            const savedKey = localStorage.getItem('gemini_api_key') || '';
+            
+            appGrid.innerHTML = appsToRender.map(app => {
+                // Append API key to URL if exists
+                const urlWithKey = savedKey 
+                    ? `${app.url}${app.url.includes('?') ? '&' : '?'}apiKey=${encodeURIComponent(savedKey)}`
+                    : app.url;
+
+                return `
                 <div class="project-card bg-surface-container-lowest rounded-2xl overflow-hidden flex flex-col group h-full">
                     <div class="aspect-[16/10] overflow-hidden relative">
                         <img src="${app.image}" alt="${app.title}" class="w-full h-full object-cover">
@@ -298,13 +308,13 @@
                             `).join('')}
                         </div>
                         
-                        <a href="${app.url}" target="_blank" class="inline-flex items-center gap-2 text-primary font-bold group/link">
+                        <a href="${urlWithKey}" target="_blank" class="inline-flex items-center gap-2 text-primary font-bold group/link">
                             Truy cập ứng dụng
                             <span class="material-symbols-outlined text-[20px] transition-transform group-hover/link:translate-x-1">arrow_forward</span>
                         </a>
                     </div>
                 </div>
-            `).join('');
+            `;}).join('');
         }
 
         // Filtering Logic
@@ -330,7 +340,15 @@
         const loadSettings = () => {
             const savedKey = localStorage.getItem('gemini_api_key');
             const savedModel = localStorage.getItem('gemini_model');
-            if (savedKey) apiKeyInput.value = savedKey;
+            const statusDot = document.getElementById('apiKeyStatus');
+
+            if (savedKey) {
+                apiKeyInput.value = savedKey;
+                if (statusDot) statusDot.classList.replace('bg-red-500', 'bg-green-500');
+            } else {
+                if (statusDot) statusDot.classList.replace('bg-green-500', 'bg-red-500');
+            }
+            
             if (savedModel) {
                 const radio = document.querySelector(`input[name="aiModel"][value="${savedModel}"]`);
                 if (radio) radio.checked = true;
@@ -358,7 +376,10 @@
             localStorage.setItem('gemini_api_key', key);
             localStorage.setItem('gemini_model', model);
             
-            alert('Cấu hình đã được lưu thành công!');
+            loadSettings(); // Update status dot
+            renderApps(apps); // Update all links with the new key
+            
+            alert('Cấu hình đã được lưu thành công! Các ứng dụng sẽ sử dụng API key này.');
             closeModal();
         });
 
